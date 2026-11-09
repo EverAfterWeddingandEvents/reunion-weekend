@@ -321,6 +321,26 @@
     box-shadow: 0 0 0 3px var(--maroon);
   }
 
+  /* ---------- Music button ---------- */
+  .music {
+    position: fixed; right: 14px; bottom: 14px; z-index: 30;
+    display: flex; align-items: center; gap: 10px;
+    padding: 6px 16px 6px 6px; border-radius: 999px; cursor: pointer;
+    background: var(--maroon); color: var(--paper-light);
+    border: 2px solid var(--mustard); box-shadow: 0 3px 0 var(--maroon-deep), 0 6px 16px rgba(43,26,18,.3);
+    font-family: var(--body); font-weight: 700; font-size: 14px; letter-spacing: .08em; text-transform: uppercase;
+  }
+  .music[hidden] { display: none; }
+  .music-disc {
+    width: 36px; height: 36px; border-radius: 50%; flex: none;
+    background:
+      radial-gradient(circle, var(--paper) 0 2px, var(--orange) 2px 8px, transparent 8px),
+      conic-gradient(from 20deg, rgba(255,255,255,.3), transparent 15%, transparent 50%, rgba(255,255,255,.25) 55%, transparent 68%),
+      repeating-radial-gradient(circle, #171210 0 1.5px, #2a211d 1.5px 3px);
+    animation: spin 3s linear infinite; animation-play-state: paused;
+  }
+  .music.playing .music-disc { animation-play-state: running; }
+
   /* ---------- Footer ---------- */
   footer {
     margin-top: 64px; padding: 30px 16px 36px; text-align: center;
@@ -357,7 +377,7 @@
 
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
-    .vinyl { animation: none; }
+    .vinyl, .music-disc { animation: none; }
     .btn { transition: none; }
   }
 </style>
@@ -426,7 +446,9 @@
 
         <div class="slot">
           <span class="time">2:00 PM</span>
-          <h4>Hotel Check-in</h4>
+          <h4>Hotel Check-in <span class="dot" aria-hidden="true">•</span> Mibang Hotel</h4>
+          <p>Sta. Filomena, Dipolog City</p>
+          <p><a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Mibang+Hotel+Sta.+Filomena+Dipolog+City" target="_blank" rel="noopener">Find it on the map →</a></p>
           <p class="note">Pending hotel confirmation: 2–3 early-access rooms for freshening up &amp; luggage.</p>
         </div>
 
@@ -434,7 +456,7 @@
           <div class="feature">
             <h3>Rewind &amp; Unwind</h3>
             <p class="theme">Theme: The ’60s, ’70s &amp; ’80s</p>
-            <p class="venue">Maykayla Garden <span class="dot" aria-hidden="true">•</span> <a href="https://www.google.com/maps/search/?api=1&query=Mibang+Hotel+Dipolog+City" target="_blank" rel="noopener">Mibang Hotel</a></p>
+            <p class="venue">Maykayla Garden <span class="dot" aria-hidden="true">•</span> <a href="https://www.google.com/maps/search/?api=1&query=Mibang+Hotel+Sta.+Filomena+Dipolog+City" target="_blank" rel="noopener">Mibang Hotel</a></p>
             <p class="tag">Reminisce, rewind &amp; dance like the old days.</p>
           </div>
         </div>
@@ -449,7 +471,7 @@
 
         <div class="slot">
           <span class="time">6:00 AM – 10:00 AM</span>
-          <h4>Plated Breakfast <span class="dot" aria-hidden="true">•</span> Pool time</h4>
+          <h4>Pool time</h4>
         </div>
 
         <div class="slot">
@@ -482,6 +504,10 @@
             <img src="assets/then-now-3.jpg" width="1254" height="1254" loading="lazy"
                  alt="Batch ’73: Then &amp; Now. Noon: three schoolboys climbing over the school wall — “Unsa atong assignment?” Ngayon: the same three as seniors laughing in a clinic waiting area, holding queue numbers — “Unsa imong maintenance?” Same classmates. Same good humor.">
           </figure>
+          <figure class="slide">
+            <img src="assets/then-now-4.jpg" width="1254" height="1254" loading="lazy"
+                 alt="Batch ’73: Then &amp; Now. Noon: classmates passing a folded paper note in the classroom — “Pasa-pasa ug notes!” Ngayon: two seniors laughing over a chat on a phone at a café — “Unsaon gani pag-Viber?” From paper notes to group chats!">
+          </figure>
         </div>
         <button class="slide-btn prev" type="button" aria-label="Previous slide">◀</button>
         <button class="slide-btn next" type="button" aria-label="Next slide">▶</button>
@@ -507,6 +533,11 @@
     </div>
   </section>
 </main>
+
+<button class="music" id="music-btn" type="button" hidden aria-pressed="false">
+  <span class="music-disc" aria-hidden="true"></span>
+  <span id="music-label">Play music</span>
+</button>
 
 <footer>
   <strong>BATCH ’73 GETAWAY</strong>
@@ -602,6 +633,61 @@
     start();
   })();
 
+  // ---------- MUSIC SETTINGS ----------
+  // Put your MP3 files in assets/music and list them here, in playing order.
+  var PLAYLIST = [
+    'assets/music/night-fever.mp3'
+  ];
+  var MUSIC_VOLUME = 0.6;          // 0 = silent, 1 = full volume
+  var START_ON_FIRST_TAP = true;   // browsers block sound until the visitor taps;
+                                   // true = start on their first tap anywhere,
+                                   // false = only when they press the music button
+  // -------------------------------------
+  (function () {
+    var btn = document.getElementById('music-btn');
+    var label = document.getElementById('music-label');
+    var tracks = PLAYLIST.slice();
+    if (!tracks.length) return;
+    var audio = new Audio();
+    var index = 0, wantPlaying = false, touched = false;
+    audio.preload = 'metadata';
+    audio.volume = MUSIC_VOLUME;
+
+    function load(i) { index = i % tracks.length; audio.src = tracks[index]; }
+    function play() { wantPlaying = true; var p = audio.play(); if (p) p.catch(function () {}); }
+    function pause() { wantPlaying = false; audio.pause(); }
+    function show(playing) {
+      btn.classList.toggle('playing', playing);
+      btn.setAttribute('aria-pressed', playing ? 'true' : 'false');
+      label.textContent = playing ? 'Pause music' : 'Play music';
+    }
+
+    audio.addEventListener('loadedmetadata', function () { btn.hidden = false; });
+    audio.addEventListener('play', function () { show(true); });
+    audio.addEventListener('pause', function () { show(false); });
+    audio.addEventListener('ended', function () { load(index + 1); play(); });
+    // A listed file that is missing or unplayable is skipped
+    audio.addEventListener('error', function () {
+      tracks.splice(index, 1);
+      if (!tracks.length) { btn.hidden = true; return; }
+      load(index);
+      if (wantPlaying) play();
+    });
+
+    btn.addEventListener('click', function () {
+      touched = true;
+      if (audio.paused) play(); else pause();
+    });
+    if (START_ON_FIRST_TAP) {
+      document.addEventListener('pointerdown', function (e) {
+        if (touched || btn.hidden || btn.contains(e.target)) return;
+        touched = true;
+        play();
+      });
+    }
+    load(0);
+  })();
+
   // "Add to calendar" downloads an all-day event for the whole weekend
   document.getElementById('add-cal').addEventListener('click', function () {
     var ics = [
@@ -613,7 +699,7 @@
       'DTEND;VALUE=DATE:20261207',
       'SUMMARY:Batch \'73 Getaway – Reunion Weekend',
       'LOCATION:Dipolog City',
-      'DESCRIPTION:Saint Joseph High School – Sindangan\\nDec 4: Early arrivals\\nDec 5: 10:00 AM Arrival & Lunch at Krishaz By The Bay\\, 2:00 PM Hotel Check-in\\, Rewind & Unwind at Maykayla Garden\\, Mibang Hotel\\nDec 6: 6:00 AM Plated Breakfast & Pool time\\, 12:00 NN Hotel Check-out & Send-off Lunch',
+      'DESCRIPTION:Saint Joseph High School – Sindangan\\nDec 4: Early arrivals\\nDec 5: 10:00 AM Arrival & Lunch at Krishaz By The Bay\\, 2:00 PM Hotel Check-in at Mibang Hotel\\, Sta. Filomena\\, Rewind & Unwind at Maykayla Garden\\, Mibang Hotel\\nDec 6: 6:00 AM Pool time\\, 12:00 NN Hotel Check-out & Send-off Lunch',
       'END:VEVENT', 'END:VCALENDAR'
     ].join('\r\n');
     var a = document.createElement('a');
