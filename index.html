@@ -276,23 +276,19 @@
     letter-spacing: .08em; text-transform: uppercase;
   }
   .attire-sub { margin: 10px 0 18px; font-style: italic; font-weight: 700; font-size: clamp(18px, 4.2vw, 24px); }
-  .decades { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-  .decade {
-    margin: 0; padding: 10px 10px 14px; text-align: center;
-    background: var(--paper-light); border: 2px solid var(--maroon); border-radius: 20px;
-    box-shadow: 0 0 0 3px var(--paper-light), 0 0 0 5px var(--mustard);
-  }
-  .decade img { width: 100%; height: auto; border-radius: 12px; border: 2px solid var(--maroon); }
+  .attire-slider { max-width: 520px; margin-bottom: 30px; }
+  .decade { padding: 0 0 16px; text-align: center; }
+  .decade img { border-bottom: 3px solid var(--maroon); }
   .decade h5 {
     display: inline-block; position: relative; margin: -20px 0 8px; padding: 4px 24px; border-radius: 999px;
     background: var(--maroon); color: var(--paper-light);
     font-family: var(--display); font-weight: 400; font-style: italic;
-    font-size: clamp(22px, 3.4vw, 30px); line-height: 1.1;
+    font-size: clamp(24px, 6vw, 34px); line-height: 1.1;
     box-shadow: 0 0 0 3px var(--mustard), 0 0 0 6px var(--orange), 0 0 0 9px var(--olive);
   }
-  .decade p { margin: 6px 0 0; font-style: italic; font-weight: 700; font-size: clamp(15px, 2vw, 18px); line-height: 1.3; color: var(--ink-soft); }
+  .decade p { margin: 8px 0 0; padding: 0 12px; font-style: italic; font-weight: 700; font-size: clamp(16px, 3.8vw, 20px); line-height: 1.3; color: var(--ink-soft); }
   .attire-foot {
-    display: inline-block; margin: 20px 0 0; padding: 6px 34px;
+    display: inline-block; margin: 0; padding: 6px 34px;
     background: var(--maroon); color: var(--paper-light);
     font-style: italic; font-weight: 700; font-size: clamp(16px, 3.8vw, 22px);
     clip-path: polygon(0 0, 100% 0, calc(100% - 14px) 50%, 100% 100%, 0 100%, 14px 50%);
@@ -410,15 +406,17 @@
     .feature { margin-inline: 22px; padding-inline: 12px;
       box-shadow: 0 0 0 3px var(--paper), 0 0 0 7px var(--mustard), 0 0 0 10px var(--paper), 0 0 0 14px var(--orange), 0 0 0 17px var(--paper), 0 0 0 21px var(--olive); }
     .eras { grid-template-columns: 1fr; gap: 6px; max-width: 380px; margin-inline: auto; }
-    .decades { grid-template-columns: 1fr; gap: 22px; max-width: 380px; margin-inline: auto; }
-    .decade p { font-size: 17px; }
     .arrow { transform: rotate(90deg); justify-self: center; }
     .nav a { padding: 9px 8px; font-size: 13px; }
     .slider { margin-inline: 8px 24px; }
     .slide-btn { width: 40px; height: 40px; }
   }
 
+  /* ---------- Confetti ---------- */
+  #confetti { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 15; pointer-events: none; }
+
   @media (prefers-reduced-motion: reduce) {
+    #confetti { display: none; }
     html { scroll-behavior: auto; }
     .vinyl, .music-disc { animation: none; }
     .btn { transition: none; }
@@ -426,6 +424,7 @@
 </style>
 </head>
 <body>
+<canvas id="confetti" aria-hidden="true"></canvas>
 
 <nav class="nav" aria-label="Page sections">
   <ul>
@@ -509,19 +508,24 @@
         <div class="attire">
           <h4 class="attire-title">Attire Inspiration</h4>
           <p class="attire-sub">Pick a decade. Make it your own.</p>
-          <div class="decades">
-            <figure class="decade">
+          <div class="slider attire-slider">
+            <div class="slides" tabindex="0" aria-label="Attire inspiration slides">
+            <figure class="slide decade">
               <img src="assets/attire-60s.jpg" width="520" height="386" loading="lazy" alt="Illustration of a couple in ’60s style: a polka-dot A-line dress and a crisp shirt with suspenders">
               <figcaption><h5>The ’60s</h5><p>A-line dresses <span aria-hidden="true">•</span> Polka dots <span aria-hidden="true">•</span> Crisp shirts</p></figcaption>
             </figure>
-            <figure class="decade">
+            <figure class="slide decade">
               <img src="assets/attire-70s.jpg" width="520" height="386" loading="lazy" alt="Illustration of a couple in ’70s style: flared pants and flowing printed shirts with wide collars">
               <figcaption><h5>The ’70s</h5><p>Flared pants <span aria-hidden="true">•</span> Flowing prints <span aria-hidden="true">•</span> Wide collars</p></figcaption>
             </figure>
-            <figure class="decade">
+            <figure class="slide decade">
               <img src="assets/attire-80s.jpg" width="520" height="386" loading="lazy" alt="Illustration of a couple in ’80s style: denim, a bright pink blouse and bold accessories">
               <figcaption><h5>The ’80s</h5><p>Denim <span aria-hidden="true">•</span> Bold colors <span aria-hidden="true">•</span> Statement accessories</p></figcaption>
             </figure>
+            </div>
+            <button class="slide-btn prev" type="button" aria-label="Previous slide">◀</button>
+            <button class="slide-btn next" type="button" aria-label="Next slide">▶</button>
+            <div class="slide-dots"></div>
           </div>
           <p class="attire-foot">Comfort first. Wear what you already own!</p>
         </div>
@@ -639,9 +643,8 @@
     tick();
   })();
 
-  // Then & Now slides: arrows, dots and swipe
-  (function () {
-    var slider = document.getElementById('then-now-slider');
+  // Slides (Attire Inspiration, Then & Now): arrows, dots and swipe
+  document.querySelectorAll('.slider').forEach(function (slider) {
     var track = slider.querySelector('.slides');
     var slides = slider.querySelectorAll('.slide');
     var prev = slider.querySelector('.prev'), next = slider.querySelector('.next');
@@ -697,7 +700,7 @@
     slider.addEventListener('touchcancel', start);
     document.addEventListener('visibilitychange', start);
     start();
-  })();
+  });
 
   // ---------- MUSIC SETTINGS ----------
   // Put your MP3 files in assets/music and list them here, in playing order.
@@ -774,6 +777,61 @@
     document.body.appendChild(a); a.click(); a.remove();
     setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
   });
+
+  // Confetti: gently falls from the top of the screen to the bottom.
+  // Change CONFETTI_COUNT for more or fewer pieces (0 turns it off).
+  (function () {
+    var CONFETTI_COUNT = 70;
+    var canvas = document.getElementById('confetti');
+    if (!CONFETTI_COUNT || window.matchMedia('(prefers-reduced-motion: reduce)').matches) { canvas.remove(); return; }
+    var ctx = canvas.getContext('2d');
+    var colors = ['#8c1d1f', '#e2a52b', '#d6602a', '#5b6a2b', '#f7dc93'];
+    var W, H, dpr, pieces = [], raf = null, last = 0;
+    function resize() {
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      W = window.innerWidth; H = window.innerHeight;
+      canvas.width = W * dpr; canvas.height = H * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+    function make(anywhere) {
+      return {
+        x: Math.random() * W,
+        y: anywhere ? Math.random() * H : -20,
+        w: 6 + Math.random() * 6, h: 8 + Math.random() * 8,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        round: Math.random() < .3,
+        vy: 40 + Math.random() * 60,
+        sway: 15 + Math.random() * 25, phase: Math.random() * 6.28,
+        rot: Math.random() * 6.28, vr: (Math.random() - .5) * 3
+      };
+    }
+    function frame(t) {
+      var dt = Math.min((t - last) / 1000, .05); last = t;
+      ctx.clearRect(0, 0, W, H);
+      pieces.forEach(function (p, i) {
+        p.y += p.vy * dt; p.phase += dt * 1.5; p.rot += p.vr * dt;
+        if (p.y > H + 20) { pieces[i] = p = make(false); }
+        ctx.save();
+        ctx.translate(p.x + Math.sin(p.phase) * p.sway, p.y);
+        ctx.rotate(p.rot);
+        ctx.scale(1, Math.cos(p.phase * 1.3));
+        ctx.globalAlpha = .85;
+        ctx.fillStyle = p.color;
+        if (p.round) { ctx.beginPath(); ctx.arc(0, 0, p.w / 2, 0, 6.28); ctx.fill(); }
+        else { ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h); }
+        ctx.restore();
+      });
+      raf = requestAnimationFrame(frame);
+    }
+    function start() { if (!raf && !document.hidden) { last = performance.now(); raf = requestAnimationFrame(frame); } }
+    function stop() { cancelAnimationFrame(raf); raf = null; }
+    resize();
+    var count = Math.round(CONFETTI_COUNT * Math.min(1, Math.max(.5, W / 900)));
+    for (var i = 0; i < count; i++) pieces.push(make(true));
+    window.addEventListener('resize', resize);
+    document.addEventListener('visibilitychange', function () { document.hidden ? stop() : start(); });
+    start();
+  })();
 </script>
 </body>
 </html>
