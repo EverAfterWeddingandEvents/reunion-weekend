@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Batch '73 Getaway · Reunion Weekend · Saint Joseph High School – Sindangan</title>
+<meta name="description" content="Saint Joseph High School – Sindangan, Batch '73 Getaway. Reunion Weekend, December 4–6, 2026, Dipolog City. Old friends. Good stories. New memories.">
+<meta property="og:title" content="Batch '73 Getaway · Reunion Weekend">
+<meta property="og:description" content="December 4–6, 2026 · Dipolog City. Old friends. Good stories. New memories.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Zilla+Slab:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f6e7c6;
+    --paper-light: #fbf1d9;
+    --paper-dark: #ecd5a4;
+    --maroon: #8c1d1f;
+    --maroon-deep: #6d1416;
+    --olive: #5b6a2b;
+    --mustard: #e2a52b;
+    --orange: #d6602a;
+    --ink: #2b1a12;
+    --ink-soft: #5a4334;
+    --display: "Alfa Slab One", "Rockwell", "Georgia", serif;
+    --body: "Zilla Slab", "Rockwell", "Georgia", serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: var(--body);
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 1.5;
+    color: var(--ink);
+    background-color: var(--paper);
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(255,255,255,.45), transparent 45%),
+      radial-gradient(circle at 85% 60%, rgba(196,150,80,.18), transparent 50%),
+      radial-gradient(circle at 10% 90%, rgba(196,150,80,.16), transparent 45%);
+    background-attachment: fixed;
+  }
+  img { max-width: 100%; display: block; }
+  a { color: var(--maroon); }
+
+  .wrap { width: min(100% - 32px, 920px); margin-inline: auto; }
+
+  /* ---------- Nav ---------- */
+  .nav {
+    position: sticky; top: 0; z-index: 20;
+    background: var(--maroon-deep);
+    border-bottom: 4px solid var(--mustard);
+  }
+  .nav ul {
+    list-style: none; margin: 0 auto; padding: 0 8px;
+    display: flex; justify-content: center; flex-wrap: wrap;
+    gap: 2px 6px; max-width: 920px;
+  }
+  .nav a {
+    display: block; padding: 10px 12px;
+    color: var(--paper-light); text-decoration: none;
+    font-weight: 700; font-size: 15px; letter-spacing: .08em; text-transform: uppercase;
+  }
+  .nav a:hover, .nav a:focus-visible { color: var(--mustard); }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    position: relative; overflow: hidden;
+    text-align: center;
+    padding: 150px 0 56px;
+    border-bottom: 3px double var(--maroon);
+  }
+  .hero::before, .hero::after {
+    content: ""; position: absolute; top: 0; width: 240px; height: 240px; pointer-events: none;
+  }
+  .hero::before {
+    left: 0;
+    background: radial-gradient(circle at 0 0,
+      transparent 0 96px, var(--olive) 96px 114px, var(--mustard) 114px 132px,
+      var(--orange) 132px 150px, var(--maroon) 150px 168px, transparent 168px);
+  }
+  .hero::after {
+    right: 0;
+    background: radial-gradient(circle at 100% 0,
+      transparent 0 96px, var(--olive) 96px 114px, var(--mustard) 114px 132px,
+      var(--orange) 132px 150px, var(--maroon) 150px 168px, transparent 168px);
+  }
+  .vinyl {
+    position: absolute; top: -150px; left: 50%;
+    width: 280px; height: 280px; margin-left: -140px; border-radius: 50%;
+    background:
+      radial-gradient(circle, var(--paper) 0 7px, var(--orange) 7px 44px, var(--maroon-deep) 44px 48px, transparent 48px),
+      conic-gradient(from 20deg, rgba(255,255,255,.16), transparent 12%, transparent 48%, rgba(255,255,255,.14) 52%, transparent 64%, transparent),
+      repeating-radial-gradient(circle, #171210 0 2px, #2a211d 2px 4px);
+    box-shadow: 0 6px 18px rgba(43,26,18,.35);
+    animation: spin 14s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .school {
+    display: inline-block; position: relative;
+    margin: 0 0 14px; padding: 6px 20px;
+    font-weight: 700; font-size: clamp(14px, 3.4vw, 22px);
+    letter-spacing: .1em; text-transform: uppercase;
+    border: 2px solid var(--mustard); border-radius: 10px;
+    background: var(--paper-light);
+    box-shadow: 0 0 0 2px var(--paper-light), 0 0 0 3px var(--maroon);
+  }
+  h1 {
+    margin: 0;
+    font-family: var(--display); font-weight: 400;
+    font-size: clamp(42px, 12.5vw, 118px);
+    line-height: .98; letter-spacing: .01em;
+    color: var(--maroon);
+    text-shadow: 3px 3px 0 var(--paper-dark);
+    text-transform: uppercase;
+  }
+  .ribbon {
+    display: inline-block; margin: 14px 0 12px;
+    padding: 6px 44px;
+    background: var(--olive); color: var(--paper-light);
+    font-family: var(--display); font-weight: 400;
+    font-size: clamp(18px, 5vw, 40px); letter-spacing: .12em; text-transform: uppercase;
+    clip-path: polygon(0 0, 100% 0, calc(100% - 18px) 50%, 100% 100%, 0 100%, 18px 50%);
+    border-block: 3px solid var(--mustard);
+  }
+  .when {
+    margin: 0;
+    font-weight: 700; font-size: clamp(18px, 4.6vw, 34px);
+    letter-spacing: .06em; text-transform: uppercase; color: var(--maroon);
+  }
+  .dot { color: var(--orange); margin-inline: .25em; }
+
+  /* ---------- Countdown ---------- */
+  .countdown {
+    display: flex; justify-content: center; gap: 10px;
+    margin: 30px auto 0; padding: 0; list-style: none;
+  }
+  .countdown li {
+    min-width: 76px; padding: 10px 6px 8px;
+    background: var(--maroon); color: var(--paper-light);
+    border-radius: 12px; border: 2px solid var(--mustard);
+    box-shadow: 0 3px 0 var(--maroon-deep);
+  }
+  .countdown b {
+    display: block; font-family: var(--display); font-weight: 400;
+    font-size: clamp(26px, 7vw, 40px); line-height: 1; font-variant-numeric: tabular-nums;
+  }
+  .countdown span { font-size: 12px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--mustard); }
+  .countdown-msg {
+    margin: 30px 0 0; font-family: var(--display); font-size: clamp(22px, 5vw, 32px); color: var(--maroon);
+  }
+
+  .actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 26px; }
+  .btn {
+    display: inline-block; padding: 12px 22px; border-radius: 999px;
+    font-family: var(--body); font-weight: 700; font-size: 16px; letter-spacing: .08em; text-transform: uppercase;
+    text-decoration: none; cursor: pointer;
+    background: var(--olive); color: var(--paper-light);
+    border: 2px solid var(--olive); box-shadow: 0 3px 0 #3e4a1c;
+  }
+  .btn.alt { background: var(--paper-light); color: var(--maroon); border-color: var(--maroon); box-shadow: 0 3px 0 var(--maroon); }
+  .btn:hover, .btn:focus-visible { transform: translateY(-1px); filter: brightness(1.05); }
+  .btn:active { transform: translateY(2px); box-shadow: none; }
+
+  /* ---------- Sections ---------- */
+  section { padding: 56px 0 8px; }
+  .eyebrow {
+    display: flex; align-items: center; gap: 16px; justify-content: center;
+    margin: 0 0 26px; text-align: center;
+    font-family: var(--display); font-weight: 400;
+    font-size: clamp(24px, 6vw, 38px); color: var(--maroon); text-transform: uppercase; letter-spacing: .04em;
+  }
+  .eyebrow::before, .eyebrow::after, .stripes {
+    content: ""; flex: 1; height: 20px; max-width: 150px;
+    background: linear-gradient(
+      var(--olive) 0 4px, transparent 4px 8px,
+      var(--mustard) 8px 12px, transparent 12px 16px,
+      var(--maroon) 16px 20px);
+  }
+
+  /* ---------- Day cards ---------- */
+  .day {
+    margin: 0 0 22px; padding: 0 20px 24px;
+    text-align: center;
+    background: rgba(251,241,217,.7);
+    border: 2px solid var(--maroon); border-radius: 22px;
+    box-shadow: inset 0 0 0 4px var(--paper-light), inset 0 0 0 5px rgba(140,29,31,.35);
+  }
+  .day-head { display: flex; align-items: center; gap: 14px; transform: translateY(-50%); margin-bottom: -6px; }
+  .day-head .stripes { max-width: none; }
+  .day-head h3 {
+    margin: 0; padding: 8px 26px; border-radius: 999px;
+    background: var(--maroon); color: var(--paper-light);
+    font-family: var(--display); font-weight: 400;
+    font-size: clamp(16px, 4.2vw, 26px); letter-spacing: .08em; text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .host { margin: 0; font-style: italic; font-weight: 700; font-size: clamp(20px, 4.6vw, 28px); }
+
+  .slot { padding: 14px 0; }
+  .slot + .slot { border-top: 2px solid var(--mustard); }
+  .time {
+    display: inline-block; margin-bottom: 6px; padding: 3px 18px; border-radius: 999px;
+    background: var(--olive); color: var(--paper-light);
+    font-weight: 700; font-size: clamp(15px, 3.6vw, 20px); letter-spacing: .1em;
+  }
+  .slot h4 { margin: 0; font-weight: 700; font-size: clamp(21px, 5vw, 30px); line-height: 1.2; }
+  .slot p { margin: 2px 0 0; font-style: italic; font-weight: 600; color: var(--ink-soft); }
+  .note {
+    display: inline-block; margin-top: 10px !important; padding: 5px 18px; border-radius: 999px;
+    background: #f7dc93; border: 1.5px solid var(--mustard); color: var(--ink) !important; font-size: 16px;
+  }
+  .maplink { font-style: normal; font-weight: 700; font-size: 15px; letter-spacing: .06em; text-transform: uppercase; }
+
+  /* ---------- Feature: Rewind & Unwind ---------- */
+  .feature {
+    position: relative; margin: 18px 0 4px; padding: 30px 20px 34px;
+    text-align: center; color: var(--paper-light);
+    background: var(--maroon);
+    border-radius: 28px;
+    box-shadow:
+      0 0 0 5px var(--paper), 0 0 0 11px var(--mustard),
+      0 0 0 16px var(--paper), 0 0 0 22px var(--orange),
+      0 0 0 27px var(--paper), 0 0 0 33px var(--olive);
+    margin-inline: 33px;
+  }
+  .feature h3 {
+    margin: 0; font-family: var(--display); font-weight: 400; font-style: italic;
+    font-size: clamp(30px, 9vw, 76px); line-height: 1; text-transform: uppercase;
+    text-shadow: 3px 3px 0 var(--maroon-deep);
+  }
+  .feature .theme { margin: 12px 0 2px; font-style: italic; font-weight: 700; font-size: clamp(19px, 4.4vw, 28px); color: #f7dc93; }
+  .feature .venue { margin: 0; font-weight: 700; font-size: clamp(19px, 4.4vw, 28px); }
+  .feature .venue a { color: inherit; }
+  .feature .tag {
+    display: inline-block; margin: 16px 0 0; padding: 6px 34px;
+    background: var(--mustard); color: var(--maroon-deep);
+    font-style: italic; font-weight: 700; font-size: clamp(16px, 3.8vw, 22px);
+    clip-path: polygon(0 0, 100% 0, calc(100% - 14px) 50%, 100% 100%, 0 100%, 14px 50%);
+  }
+  .feature-pad { padding: 40px 0 36px; }
+
+  /* ---------- Then & Now slides ---------- */
+  .slider { position: relative; max-width: 600px; margin: 0 auto 48px; }
+  .slides {
+    display: flex; overflow-x: auto; scroll-snap-type: x mandatory;
+    scrollbar-width: none; overscroll-behavior-x: contain;
+    border: 3px solid var(--maroon); border-radius: 18px;
+    background: var(--paper-light);
+    box-shadow: 8px 8px 0 var(--mustard), 16px 16px 0 var(--olive);
+  }
+  .slides::-webkit-scrollbar { display: none; }
+  .slide { flex: 0 0 100%; margin: 0; scroll-snap-align: center; }
+  .slide img { width: 100%; height: auto; }
+  .slide-btn {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    width: 46px; height: 46px; border-radius: 50%; cursor: pointer;
+    background: var(--maroon); color: var(--paper-light);
+    border: 2px solid var(--mustard); box-shadow: 0 3px 0 var(--maroon-deep);
+    font-family: var(--display); font-size: 20px; line-height: 1;
+  }
+  .slide-btn.prev { left: -14px; }
+  .slide-btn.next { right: -14px; }
+  .slide-btn:disabled { opacity: .35; cursor: default; }
+  .slide-dots { display: flex; justify-content: center; gap: 10px; margin-top: 34px; }
+  .slide-dots button {
+    width: 14px; height: 14px; padding: 0; border-radius: 50%; cursor: pointer;
+    background: var(--paper-light); border: 2px solid var(--maroon);
+  }
+  .slide-dots button[aria-current="true"] { background: var(--maroon); }
+  .slider.single .slide-btn, .slider.single .slide-dots { display: none; }
+
+  /* ---------- Eras ---------- */
+  .eras { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; align-items: center; gap: 10px; }
+  .era { margin: 0; text-align: center; }
+  .era img {
+    width: 100%; aspect-ratio: 16 / 10; object-fit: cover;
+    border-radius: 26px; border: 3px solid var(--maroon);
+    box-shadow: 0 0 0 4px var(--paper-light), 0 0 0 6px var(--mustard);
+  }
+  .era figcaption {
+    display: inline-block; position: relative; margin-top: -18px; padding: 6px 22px;
+    background: var(--maroon); color: var(--paper-light);
+    font-weight: 700; font-size: clamp(14px, 2.2vw, 19px); line-height: 1.15;
+    letter-spacing: .08em; text-transform: uppercase;
+    border: 2px solid var(--mustard);
+    clip-path: polygon(0 0, 100% 0, calc(100% - 12px) 50%, 100% 100%, 0 100%, 12px 50%);
+  }
+  .era figcaption small { display: block; font-size: .8em; color: #f7dc93; }
+  .arrow { font-family: var(--display); font-size: 34px; color: var(--mustard); text-shadow: 1px 1px 0 var(--maroon); }
+
+  .motto {
+    margin: 44px 0 0; padding: 14px 20px; text-align: center;
+    background: var(--maroon); color: var(--paper-light);
+    font-style: italic; font-weight: 700; font-size: clamp(22px, 5.6vw, 40px);
+    border-radius: 14px; border: 3px solid var(--mustard);
+    box-shadow: 0 0 0 3px var(--maroon);
+  }
+
+  /* ---------- Footer ---------- */
+  footer {
+    margin-top: 64px; padding: 30px 16px 36px; text-align: center;
+    background: var(--maroon-deep); color: var(--paper-light);
+    border-top: 6px solid var(--mustard);
+    box-shadow: inset 0 6px 0 var(--orange), inset 0 12px 0 var(--olive);
+  }
+  footer strong { display: block; font-family: var(--display); font-weight: 400; font-size: 22px; letter-spacing: .06em; }
+  footer span { color: #f7dc93; font-style: italic; }
+
+  /* ---------- Small screens ---------- */
+  @media (max-width: 640px) {
+    body { font-size: 17px; }
+    .hero { padding-top: 120px; }
+    .hero::before, .hero::after { width: 120px; height: 120px; transform-origin: top left; }
+    .hero::before { background: radial-gradient(circle at 0 0, transparent 0 40px, var(--olive) 40px 50px, var(--mustard) 50px 60px, var(--orange) 60px 70px, var(--maroon) 70px 80px, transparent 80px); }
+    .hero::after { background: radial-gradient(circle at 100% 0, transparent 0 40px, var(--olive) 40px 50px, var(--mustard) 50px 60px, var(--orange) 60px 70px, var(--maroon) 70px 80px, transparent 80px); }
+    .vinyl { width: 220px; height: 220px; margin-left: -110px; top: -125px; }
+    .countdown { gap: 6px; }
+    .countdown li { min-width: 0; flex: 1; max-width: 80px; }
+    .countdown span { font-size: 10px; letter-spacing: .08em; }
+    .day { padding-inline: 14px; }
+    .day-head { gap: 8px; }
+    .day-head h3 { padding-inline: 16px; white-space: normal; }
+    .day-head .stripes { min-width: 14px; }
+    .feature { margin-inline: 22px; padding-inline: 12px;
+      box-shadow: 0 0 0 3px var(--paper), 0 0 0 7px var(--mustard), 0 0 0 10px var(--paper), 0 0 0 14px var(--orange), 0 0 0 17px var(--paper), 0 0 0 21px var(--olive); }
+    .eras { grid-template-columns: 1fr; gap: 6px; max-width: 380px; margin-inline: auto; }
+    .arrow { transform: rotate(90deg); justify-self: center; }
+    .nav a { padding: 9px 8px; font-size: 13px; }
+    .slider { margin-inline: 8px 24px; }
+    .slide-btn { width: 40px; height: 40px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .vinyl { animation: none; }
+    .btn { transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav" aria-label="Page sections">
+  <ul>
+    <li><a href="#schedule">Schedule</a></li>
+    <li><a href="#rewind">Rewind &amp; Unwind</a></li>
+    <li><a href="#story">Then &amp; Now</a></li>
+  </ul>
+</nav>
+
+<header class="hero" id="top">
+  <div class="vinyl" aria-hidden="true"></div>
+  <div class="wrap">
+    <p class="school">Saint Joseph High School – Sindangan</p>
+    <h1>Batch ’73 Getaway</h1>
+    <div><span class="ribbon">Reunion Weekend</span></div>
+    <p class="when">December 4–6, 2026 <span class="dot" aria-hidden="true">•</span> Dipolog City</p>
+
+    <ul class="countdown" id="countdown" aria-label="Countdown to the reunion">
+      <li><b id="cd-d">--</b><span>Days</span></li>
+      <li><b id="cd-h">--</b><span>Hours</span></li>
+      <li><b id="cd-m">--</b><span>Mins</span></li>
+      <li><b id="cd-s">--</b><span>Secs</span></li>
+    </ul>
+    <p class="countdown-msg" id="countdown-msg" hidden></p>
+
+    <div class="actions">
+      <a class="btn" href="#schedule">See the schedule</a>
+      <button class="btn alt" id="add-cal" type="button">Add to calendar</button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section id="schedule">
+    <div class="wrap">
+      <h2 class="eyebrow">The Weekend</h2>
+
+      <article class="day" style="margin-top: 34px;">
+        <div class="day-head">
+          <span class="stripes" aria-hidden="true"></span>
+          <h3>December 4 <span class="dot" aria-hidden="true">•</span> Early Arrivals</h3>
+          <span class="stripes" aria-hidden="true"></span>
+        </div>
+        <p class="host">Host: Estrella Gayapa-Co</p>
+      </article>
+
+      <article class="day" style="margin-top: 44px;">
+        <div class="day-head">
+          <span class="stripes" aria-hidden="true"></span>
+          <h3>December 5</h3>
+          <span class="stripes" aria-hidden="true"></span>
+        </div>
+
+        <div class="slot">
+          <span class="time">10:00 AM – 2:00 PM</span>
+          <h4>Arrival &amp; Lunch <span class="dot" aria-hidden="true">•</span> Krishaz By The Bay</h4>
+          <p>Catered by CLS Food Plaza</p>
+          <p>Attire: Casual</p>
+          <p><a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Krishaz+By+The+Bay+Dipolog+City" target="_blank" rel="noopener">Find it on the map →</a></p>
+        </div>
+
+        <div class="slot">
+          <span class="time">2:00 PM</span>
+          <h4>Hotel Check-in</h4>
+          <p class="note">Pending hotel confirmation: 2–3 early-access rooms for freshening up &amp; luggage.</p>
+        </div>
+
+        <div class="feature-pad" id="rewind">
+          <div class="feature">
+            <h3>Rewind &amp; Unwind</h3>
+            <p class="theme">Theme: The ’60s, ’70s &amp; ’80s</p>
+            <p class="venue">Maykayla Garden <span class="dot" aria-hidden="true">•</span> <a href="https://www.google.com/maps/search/?api=1&query=Mibang+Hotel+Dipolog+City" target="_blank" rel="noopener">Mibang Hotel</a></p>
+            <p class="tag">Reminisce, rewind &amp; dance like the old days.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="day" style="margin-top: 44px;">
+        <div class="day-head">
+          <span class="stripes" aria-hidden="true"></span>
+          <h3>December 6 <span class="dot" aria-hidden="true">•</span> Until Next Time</h3>
+          <span class="stripes" aria-hidden="true"></span>
+        </div>
+
+        <div class="slot">
+          <span class="time">6:00 AM – 10:00 AM</span>
+          <h4>Plated Breakfast <span class="dot" aria-hidden="true">•</span> Pool time</h4>
+        </div>
+
+        <div class="slot">
+          <span class="time">12:00 NN – 2:00 PM</span>
+          <h4>Hotel Check-out &amp; Send-off Lunch</h4>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="story">
+    <div class="wrap">
+      <h2 class="eyebrow">Then &amp; Now</h2>
+
+      <!-- THEN & NOW SLIDES
+           To add another slide: save the image in the assets folder,
+           then copy one <figure class="slide">…</figure> block below and
+           change the file name and the alt text. Arrows and dots update by themselves. -->
+      <div class="slider" id="then-now-slider">
+        <div class="slides" tabindex="0" aria-label="Then and Now slides">
+          <figure class="slide">
+            <img src="assets/then-now-1.jpg" width="1254" height="1254" loading="lazy"
+                 alt="Batch ’73: Then &amp; Now. Noon: two students at school, one passing a love letter — “Kinsa imong crush?” Ngayon: the same two as seniors laughing over coffee beside a senior discount sign — “Asa ang senior discount?” Same classmates. Same good humor.">
+          </figure>
+          <figure class="slide">
+            <img src="assets/then-now-2.jpg" width="1254" height="1254" loading="lazy"
+                 alt="Batch ’73: Then &amp; Now. Noon: three schoolgirls giggling by the school wall — “Naa kay ballpen?” Ngayon: the same three as seniors laughing in a waiting area, holding queue numbers — “Naa kay reading glasses?” Same classmates. Same good humor.">
+          </figure>
+          <figure class="slide">
+            <img src="assets/then-now-3.jpg" width="1254" height="1254" loading="lazy"
+                 alt="Batch ’73: Then &amp; Now. Noon: three schoolboys climbing over the school wall — “Unsa atong assignment?” Ngayon: the same three as seniors laughing in a clinic waiting area, holding queue numbers — “Unsa imong maintenance?” Same classmates. Same good humor.">
+          </figure>
+        </div>
+        <button class="slide-btn prev" type="button" aria-label="Previous slide">◀</button>
+        <button class="slide-btn next" type="button" aria-label="Next slide">▶</button>
+        <div class="slide-dots"></div>
+      </div>
+      <div class="eras">
+        <figure class="era">
+          <img src="assets/era-school.png" alt="Illustration of two smiling students in school uniform in front of the school building" width="352" height="220" loading="lazy">
+          <figcaption>School Days <small>(Early ’70s)</small></figcaption>
+        </figure>
+        <span class="arrow" aria-hidden="true">➜</span>
+        <figure class="era">
+          <img src="assets/era-working.png" alt="Illustration of the same two friends as working professionals, sharing coffee in the city" width="350" height="220" loading="lazy">
+          <figcaption>Working Years <small>(’80s)</small></figcaption>
+        </figure>
+        <span class="arrow" aria-hidden="true">➜</span>
+        <figure class="era">
+          <img src="assets/era-golden.png" alt="Illustration of the two friends in their golden years, laughing over coffee by the beach at sunset" width="360" height="220" loading="lazy">
+          <figcaption>Golden Years <small>(Present)</small></figcaption>
+        </figure>
+      </div>
+      <p class="motto">Old friends. Good stories. New memories.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <strong>BATCH ’73 GETAWAY</strong>
+  Saint Joseph High School – Sindangan · December 4–6, 2026 · Dipolog City<br>
+  <span>Old friends. Good stories. New memories.</span>
+</footer>
+
+<script>
+  // Countdown to December 4, 2026 (Philippine time, UTC+8)
+  (function () {
+    var start = new Date('2026-12-04T00:00:00+08:00').getTime();
+    var end = new Date('2026-12-07T00:00:00+08:00').getTime();
+    var list = document.getElementById('countdown');
+    var msg = document.getElementById('countdown-msg');
+    var el = { d: 'cd-d', h: 'cd-h', m: 'cd-m', s: 'cd-s' };
+    Object.keys(el).forEach(function (k) { el[k] = document.getElementById(el[k]); });
+    function pad(n) { return n < 10 ? '0' + n : '' + n; }
+    function tick() {
+      var now = Date.now();
+      if (now >= start) {
+        list.hidden = true; msg.hidden = false;
+        msg.textContent = now < end ? 'It’s reunion weekend — welcome back, Batch ’73!' : 'Until next time, Batch ’73!';
+        clearInterval(timer);
+        return;
+      }
+      var s = Math.floor((start - now) / 1000);
+      el.d.textContent = Math.floor(s / 86400);
+      el.h.textContent = pad(Math.floor(s % 86400 / 3600));
+      el.m.textContent = pad(Math.floor(s % 3600 / 60));
+      el.s.textContent = pad(s % 60);
+    }
+    var timer = setInterval(tick, 1000);
+    tick();
+  })();
+
+  // Then & Now slides: arrows, dots and swipe
+  (function () {
+    var slider = document.getElementById('then-now-slider');
+    var track = slider.querySelector('.slides');
+    var slides = slider.querySelectorAll('.slide');
+    var prev = slider.querySelector('.prev'), next = slider.querySelector('.next');
+    var dotsBox = slider.querySelector('.slide-dots');
+    if (slides.length < 2) { slider.classList.add('single'); return; }
+    var dots = [];
+    function current() { return Math.round(track.scrollLeft / track.clientWidth); }
+    function go(i) {
+      i = Math.max(0, Math.min(slides.length - 1, i));
+      track.scrollTo({ left: i * track.clientWidth, behavior: 'smooth' });
+    }
+    function update() {
+      var c = current();
+      dots.forEach(function (d, i) { d.setAttribute('aria-current', i === c ? 'true' : 'false'); });
+      prev.disabled = c === 0; next.disabled = c === slides.length - 1;
+    }
+    slides.forEach(function (_, i) {
+      var d = document.createElement('button');
+      d.type = 'button'; d.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+      d.addEventListener('click', function () { go(i); });
+      dotsBox.appendChild(d); dots.push(d);
+    });
+    prev.addEventListener('click', function () { go(current() - 1); });
+    next.addEventListener('click', function () { go(current() + 1); });
+    track.addEventListener('scroll', function () { requestAnimationFrame(update); });
+    track.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowLeft') { e.preventDefault(); go(current() - 1); }
+      if (e.key === 'ArrowRight') { e.preventDefault(); go(current() + 1); }
+    });
+    window.addEventListener('resize', update);
+    update();
+
+    // Auto-advance: next slide every 5 seconds, back to the first after the last.
+    // Pauses while someone is hovering, touching or using the arrows and dots.
+    var AUTO_MS = 5000;
+    var timer = null;
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function stop() { clearInterval(timer); timer = null; }
+    function start() {
+      stop();
+      if (reduceMotion || document.hidden) return;
+      timer = setInterval(function () {
+        var c = current();
+        go(c === slides.length - 1 ? 0 : c + 1);
+      }, AUTO_MS);
+    }
+    slider.addEventListener('mouseenter', stop);
+    slider.addEventListener('mouseleave', start);
+    slider.addEventListener('focusin', stop);
+    slider.addEventListener('focusout', start);
+    slider.addEventListener('touchstart', stop, { passive: true });
+    slider.addEventListener('touchend', start);
+    slider.addEventListener('touchcancel', start);
+    document.addEventListener('visibilitychange', start);
+    start();
+  })();
+
+  // "Add to calendar" downloads an all-day event for the whole weekend
+  document.getElementById('add-cal').addEventListener('click', function () {
+    var ics = [
+      'BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Batch 73 Getaway//Reunion Weekend//EN',
+      'BEGIN:VEVENT',
+      'UID:batch73-getaway-2026@reunion-weekend',
+      'DTSTAMP:20261101T000000Z',
+      'DTSTART;VALUE=DATE:20261204',
+      'DTEND;VALUE=DATE:20261207',
+      'SUMMARY:Batch \'73 Getaway – Reunion Weekend',
+      'LOCATION:Dipolog City',
+      'DESCRIPTION:Saint Joseph High School – Sindangan\\nDec 4: Early arrivals\\nDec 5: 10:00 AM Arrival & Lunch at Krishaz By The Bay\\, 2:00 PM Hotel Check-in\\, Rewind & Unwind at Maykayla Garden\\, Mibang Hotel\\nDec 6: 6:00 AM Plated Breakfast & Pool time\\, 12:00 NN Hotel Check-out & Send-off Lunch',
+      'END:VEVENT', 'END:VCALENDAR'
+    ].join('\r\n');
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([ics], { type: 'text/calendar' }));
+    a.download = 'batch-73-getaway.ics';
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
+  });
+</script>
+</body>
+</html>
